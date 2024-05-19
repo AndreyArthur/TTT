@@ -7,7 +7,7 @@ int main() {
     for (int row = 0; row < GAME_SIZE; row++) {
         for (int column = 0; column < GAME_SIZE; column++) {
             if (column == GAME_SIZE - 1) {
-                printf(" %c \n", game.board[row][column]);
+                printf(" %c ", game.board[row][column]);
             } else {
                 printf(" %c |", game.board[row][column]);
             }
