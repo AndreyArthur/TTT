@@ -1,21 +1,26 @@
-#include "include/game.h"
+#include "include/interface.h"
 #include <stdio.h>
 
 int main() {
-    Game game = game_init();
+    Interface interface = interface_init();
 
-    for (int row = 0; row < GAME_SIZE; row++) {
-        for (int column = 0; column < GAME_SIZE; column++) {
-            if (column == GAME_SIZE - 1) {
-                printf(" %c \n", game.board[row][column]);
-            } else {
-                printf(" %c |", game.board[row][column]);
+    interface_get_names(&interface);
+
+    interface_display_game(&interface);
+
+    while (1) {
+        interface_make_move(&interface);
+
+        interface_display_game(&interface);
+
+        if (interface_game_is_over(&interface)) {
+            bool new_game = interface_ask_new_game(&interface);
+
+            if (new_game == false) {
+                return 0;
             }
         }
-
-        if (row != GAME_SIZE - 1) {
-            printf("-----------\n");
-        }
     }
+
     return 0;
 }
