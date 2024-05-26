@@ -3,22 +3,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#ifdef _WIN32
-
-#define ERROR ""
-#define WARN ""
-#define SUCCESS ""
-#define CLEAN ""
-
-#else
-
-#define ERROR "\x1b[31m"
-#define WARN "\x1b[33m"
-#define SUCCESS "\x1b[32m"
-#define CLEAN "\x1b[0m"
-
-#endif
-
 Interface interface_init() {
     Game game = game_init();
     Interface interface;
@@ -83,8 +67,7 @@ void interface_make_move(Interface* interface) {
             scanf("%d", &row);
 
             if (row < 0 || row > 2) {
-                printf(ERROR
-                       "Entrada inválida, precisa estar entre 0 e 2.\n" CLEAN);
+                printf("Entrada inválida, precisa estar entre 0 e 2.\n");
             }
         }
 
@@ -94,8 +77,7 @@ void interface_make_move(Interface* interface) {
             scanf("%d", &column);
 
             if (column < 0 || column > 2) {
-                printf(ERROR
-                       "Entrada inválida, precisa estar entre 0 e 2.\n" CLEAN);
+                printf("Entrada inválida, precisa estar entre 0 e 2.\n");
             }
         }
 
@@ -103,8 +85,7 @@ void interface_make_move(Interface* interface) {
             occupied = false;
             game_insert(&interface->game, row, column);
         } else {
-            printf(ERROR
-                   "Entrada inválida, esta posição já está ocupada.\n" CLEAN);
+            printf("Entrada inválida, esta posição já está ocupada.\n");
         }
     }
 }
@@ -113,15 +94,13 @@ bool interface_game_is_over(Interface* interface) {
     char win = game_verify_win(&interface->game);
 
     if (win == 'X') {
-        printf(
-            SUCCESS "Parabéns %s, você venceu!\n" CLEAN, interface->x_player);
+        printf("Parabéns %s, você venceu!\n", interface->x_player);
         return true;
     } else if (win == 'O') {
-        printf(
-            SUCCESS "Parabéns %s, você venceu!\n" CLEAN, interface->o_player);
+        printf("Parabéns %s, você venceu!\n", interface->o_player);
         return true;
     } else if (win == '=') {
-        printf(WARN "Deu velha! Ninguém ganhou.\n" CLEAN);
+        printf("Deu velha! Ninguém ganhou.\n");
         return true;
     }
 
