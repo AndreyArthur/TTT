@@ -1,7 +1,14 @@
 #include "include/interface.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
+#ifdef _WIN32
+    printf("Adicionando suporte a acentos...\n");
+    system("chcp 65001");
+    printf("\n");
+#endif
+
     Interface interface = interface_init();
 
     interface_get_names(&interface);

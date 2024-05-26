@@ -3,10 +3,21 @@
 #include <stdio.h>
 #include <string.h>
 
+#ifdef _WIN32
+
+#define ERROR ""
+#define WARN ""
+#define SUCCESS ""
+#define CLEAN ""
+
+#else
+
 #define ERROR "\x1b[31m"
 #define WARN "\x1b[33m"
 #define SUCCESS "\x1b[32m"
 #define CLEAN "\x1b[0m"
+
+#endif
 
 Interface interface_init() {
     Game game = game_init();
