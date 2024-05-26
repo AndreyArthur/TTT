@@ -1,8 +1,16 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
+// Lida com coisas relacionadas à interação com o usuário.
 
 #include "game.h"
 
+/*
+ * Estrutura que define a interface.
+ *
+ * x_player: nome do jogador 'X'
+ * o_player: nome do jogador 'O'
+ * game: a estrutura do jogo
+ */
 typedef struct Interface {
     char x_player[32];
     char o_player[32];
