@@ -56,12 +56,17 @@ void game_insert(Game* game, int row, int column) {
  * game: ponteiro para a estrutura do jogo
  */
 static char game_verify_row(Game* game) {
-    for (int index = 0; index < GAME_SIZE; index++) {
-        if (game->board[index][0] != ' ' &&
-            game->board[index][0] == game->board[index][1] &&
-            game->board[index][1] == game->board[index][2]) {
-            return game->board[index][0];
+    int row = 0;
+    while (row < GAME_SIZE) {
+        if (game->board[row][0] == 'O' && game->board[row][1] == 'O' &&
+            game->board[row][2] == 'O') {
+            return 'O';
+        } else if (
+            game->board[row][0] == 'X' && game->board[row][1] == 'X' &&
+            game->board[row][2] == 'X') {
+            return 'X';
         }
+        row++;
     }
     return ' ';
 }
@@ -77,14 +82,12 @@ static char game_verify_row(Game* game) {
 static char game_verify_column(Game* game) {
     int column = 0;
     while (column < GAME_SIZE) {
-        if ((game->board[0][column] == 'O') &&
-            (game->board[1][column] == 'O') &&
-            (game->board[2][column] == 'O')) {
+        if (game->board[0][column] == 'O' && game->board[1][column] == 'O' &&
+            game->board[2][column] == 'O') {
             return 'O';
         } else if (
-            (game->board[0][column] == 'X') &&
-            (game->board[1][column] == 'X') &&
-            (game->board[2][column] == 'X')) {
+            game->board[0][column] == 'X' && game->board[1][column] == 'X' &&
+            game->board[2][column] == 'X') {
             return 'X';
         }
         column++;
@@ -101,14 +104,24 @@ static char game_verify_column(Game* game) {
  * game: ponteiro para a estrutura do jogo
  */
 static char game_verify_diagonal(Game* game) {
-    if (game->board[0][0] != ' ' && game->board[0][0] == game->board[1][1] &&
-        game->board[1][1] == game->board[2][2]) {
-        return game->board[0][0];
+    if (game->board[0][0] == 'X' && game->board[1][1] == 'X' &&
+        game->board[2][2] == 'X') {
+        return 'X';
     }
 
-    if (game->board[0][2] != ' ' && game->board[0][2] == game->board[1][1] &&
-        game->board[1][1] == game->board[2][0]) {
-        return game->board[0][2];
+    if (game->board[0][0] == 'O' && game->board[1][1] == 'O' &&
+        game->board[2][2] == 'O') {
+        return 'O';
+    }
+
+    if (game->board[0][2] == 'X' && game->board[1][1] == 'X' &&
+        game->board[2][0] == 'X') {
+        return 'X';
+    }
+
+    if (game->board[0][2] == 'O' && game->board[1][1] == 'O' &&
+        game->board[2][0] == 'O') {
+        return 'O';
     }
 
     return ' ';
