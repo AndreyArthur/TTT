@@ -90,21 +90,21 @@ void interface_make_move(Interface* interface) {
 
         while (row < 0 || row > 2) {
             printf(
-                "%s (%c), escolha a linha que você quer jogar: ", name, turn);
+                "%s (%c), escolha a linha que voce quer jogar: ", name, turn);
             scanf("%d", &row);
 
             if (row < 0 || row > 2) {
-                printf("Entrada inválida, precisa estar entre 0 e 2.\n");
+                printf("Entrada invalida, precisa estar entre 0 e 2.\n");
             }
         }
 
         while (column < 0 || column > 2) {
             printf(
-                "%s (%c), escolha a coluna que você quer jogar: ", name, turn);
+                "%s (%c), escolha a coluna que voce quer jogar: ", name, turn);
             scanf("%d", &column);
 
             if (column < 0 || column > 2) {
-                printf("Entrada inválida, precisa estar entre 0 e 2.\n");
+                printf("Entrada invalida, precisa estar entre 0 e 2.\n");
             }
         }
 
@@ -114,7 +114,7 @@ void interface_make_move(Interface* interface) {
             occupied = false;
             game_insert(&interface->game, row, column);
         } else {
-            printf("Entrada inválida, esta posição já está ocupada.\n");
+            printf("Entrada invalida, esta posicao ja esta ocupada.\n");
         }
     }
 }
@@ -129,13 +129,13 @@ bool interface_game_is_over(Interface* interface) {
     char win = game_verify_win(&interface->game);
 
     if (win == 'X') {
-        printf("Parabéns %s, você venceu!\n", interface->x_player);
+        printf("Parabens %s, voce venceu!\n", interface->x_player);
         return true;
     } else if (win == 'O') {
-        printf("Parabéns %s, você venceu!\n", interface->o_player);
+        printf("Parabens %s, voce venceu!\n", interface->o_player);
         return true;
     } else if (win == '=') {
-        printf("Deu velha! Ninguém ganhou.\n");
+        printf("Deu velha! Ninguem ganhou.\n");
         return true;
     }
 
@@ -170,7 +170,7 @@ bool interface_ask_new_game(Interface* interface) {
     // se quiserem pergunte se serão os mesmos jogadores
     choice = ' ';
     while (choice != 'S' && choice != 'N') {
-        printf("São os mesmos jogadores (S/N)? ");
+        printf("Sao os mesmos jogadores (S/N)? ");
         scanf(" %c", &choice);
 
         if (choice == 's') {
